@@ -1,34 +1,23 @@
-dict_ = {}
-with open('1.txt', encoding='utf-8') as f:
-    count_1 = 0
-    name_1 = '1.txt'
-    lines_1 = ""
-    for line in f:
-        count_1 += 1
-        lines_1 += line
-    text_1 = name_1 + '\n' + str(count_1) + '\n' + lines_1 + '\n'
-    dict_[count_1] = text_1
+import os
+file_list = os.listdir(r"Original text") # Исходные файлы *.txt должны быть в данной папке
+dict_text = {}
+# print(file_list)
 
-with open('2.txt', encoding='utf-8') as f:
-    count_2 = 0
-    name_2 = '2.txt'
-    lines_2 = ""
-    for line in f:
-        count_2 += 1
-        lines_2 += line
-    text_2 = name_2 + '\n' + str(count_2) + '\n' + lines_2 + '\n'
-    dict_[count_2] = text_2
+def transformation(self):
+    for name in self:
+        file = f'Original text/{name}'
+        # print(file)
+        with open(file, encoding='utf-8') as f:
+            count = 0
+            lines = ""
+            for line in f:
+                count += 1
+                lines += line
+            text = name + '\n' + str(count) + '\n' + lines + '\n'
+            dict_text[count] = text
 
-with open('3.txt', encoding='utf-8') as f:
-    count_3 = 0
-    name_3 = '3.txt'
-    lines_3 = ""
-    for line in f:
-        count_3 += 1
-        lines_3 += line
-    text_3 = name_3 + '\n' + str(count_3) + '\n' + lines_3 + '\n'
-    dict_[count_3] = text_3
+transformation(file_list)
 
-with open('4.txt', 'w', encoding='utf-8') as f:
-    for key in sorted(dict_.keys()):
-        f.write(dict_[key])
+with open('Result.txt', 'w', encoding='utf-8') as f:
+    for key in sorted(dict_text.keys()):
+        f.write(dict_text[key])

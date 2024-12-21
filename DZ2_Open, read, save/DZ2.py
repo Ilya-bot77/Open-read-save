@@ -21,13 +21,11 @@ def get_shop_list_by_dishes(self, person_count):
         for key in cook_book:
             if key == a:
                 for b in cook_book[key]:
+                    new_dict_ingred = {}
                     ingredient = b["ingredient_name"]
-                    del b["ingredient_name"]
-                    b["quantity"] *= person_count
-                    quantity = b["quantity"]
-                    del b["quantity"]
-                    b["quantity"] = quantity
-                    ingred_dict[ingredient] = b
+                    new_dict_ingred["measure"] = b["measure"]
+                    new_dict_ingred["quantity"] = b["quantity"] * person_count
+                    ingred_dict[ingredient] = new_dict_ingred
     print(ingred_dict)
 
 get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
